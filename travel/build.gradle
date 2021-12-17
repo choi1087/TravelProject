@@ -1,0 +1,49 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example.triptobuy'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6' //SQL 실행 파라미터를 로그로 남김
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-hibernate5
+    implementation'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
+
+    // 데이터 베이스 h2 or mysql
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.20'
+    runtimeOnly 'com.h2database:h2'
+
+    // 스프링 시큐리티
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.4.5'
+
+    // validation 유효성 검사
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
+    compileOnly 'org.projectlombok:lombok'
+
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
